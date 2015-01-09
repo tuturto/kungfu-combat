@@ -49,9 +49,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Main.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />
@@ -60,4 +60,10 @@
     <Folder Include="Content\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\ttl\Octo.csproj">
+      <Project>{9177CDF2-C42B-4A4A-AA67-451E682D6CB5}</Project>
+      <Name>Octo</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>

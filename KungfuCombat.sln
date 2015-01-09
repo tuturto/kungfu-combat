@@ -3,12 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KungfuCombat", "KungfuCombat\KungfuCombat.csproj", "{E4646A6B-7477-45A6-B462-CC57742DCFC5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Octo", "ttl\Octo.csproj", "{9177CDF2-C42B-4A4A-AA67-451E682D6CB5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9177CDF2-C42B-4A4A-AA67-451E682D6CB5}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9177CDF2-C42B-4A4A-AA67-451E682D6CB5}.Debug|x86.Build.0 = Debug|Any CPU
+		{9177CDF2-C42B-4A4A-AA67-451E682D6CB5}.Release|x86.ActiveCfg = Release|Any CPU
+		{9177CDF2-C42B-4A4A-AA67-451E682D6CB5}.Release|x86.Build.0 = Release|Any CPU
 		{E4646A6B-7477-45A6-B462-CC57742DCFC5}.Debug|x86.ActiveCfg = Debug|x86
 		{E4646A6B-7477-45A6-B462-CC57742DCFC5}.Debug|x86.Build.0 = Debug|x86
 		{E4646A6B-7477-45A6-B462-CC57742DCFC5}.Release|x86.ActiveCfg = Release|x86
