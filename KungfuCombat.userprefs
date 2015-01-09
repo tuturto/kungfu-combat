@@ -1,10 +1,21 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="KungfuCombat/Game1.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="KungfuCombat/IntroScreen.cs">
     <Files>
-      <File FileName="KungfuCombat/Game1.cs" Line="1" Column="1" />
       <File FileName="ttl/IGameState.cs" Line="27" Column="1" />
+      <File FileName="KungfuCombat/Main.cs" Line="6" Column="1" />
+      <File FileName="KungfuCombat/IntroScreen.cs" Line="18" Column="9" />
+      <File FileName="KungfuCombat/StateFactory.cs" Line="21" Column="19" />
+      <File FileName="ttl/StateCache.cs" Line="1" Column="1" />
     </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="KungfuCombat" expanded="True" />
+          <Node name="Octo" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

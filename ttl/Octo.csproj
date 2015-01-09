@@ -7,8 +7,9 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{9177CDF2-C42B-4A4A-AA67-451E682D6CB5}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>ttl</RootNamespace>
-    <AssemblyName>ttl</AssemblyName>
+    <RootNamespace>Octo</RootNamespace>
+    <AssemblyName>Octo</AssemblyName>
+    <SynchReleaseVersion>false</SynchReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
