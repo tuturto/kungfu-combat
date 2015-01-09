@@ -1,12 +1,11 @@
 using System;
 using System.Collections.Generic;
 
-namespace Octo
-{
-    public class StateCache : IStateCache
-    {
-        public StateCache (IStateFactory factory)
-        {
+namespace Octo {
+
+    public class StateCache : IStateCache {
+
+        public StateCache (IStateFactory factory) {
             _factory = factory;
             _states = new Dictionary<Type, IGameState> ();
         }

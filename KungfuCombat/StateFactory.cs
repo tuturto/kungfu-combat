@@ -5,10 +5,10 @@ using Microsoft.Xna.Framework.Graphics;
 
 using Octo;
 
-namespace KungfuCombat
-{
-    public class StateFactory : IStateFactory
-    {
+namespace KungfuCombat {
+
+    public class StateFactory : IStateFactory {
+
         public StateFactory(GraphicsDeviceManager graphics,
                             SpriteBatch spriteBatch) {
             _graphics = graphics;

@@ -14,10 +14,9 @@ namespace KungfuCombat
     /// <summary>
     /// This is the main type for your game
     /// </summary>
-    public class Main : Game
-    {
-        public Main()
-        {
+    public class Main : Game {
+
+        public Main() {
             _graphics = new GraphicsDeviceManager(this);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
@@ -36,13 +35,12 @@ namespace KungfuCombat
         /// related content.  Calling base.Initialize will enumerate through any components
         /// and initialize them as well.
         /// </summary>
-        protected override void Initialize()
-        {
+        protected override void Initialize() {
             // TODO: Add your initialization logic here
             _stateCache = new StateCache (new StateFactory (_graphics, 
                                                             _spriteBatch));
             _state = _stateCache.GetState (typeof (IntroScreen));
-            _state.StateChangeEvent += new EventHandler (StateChangeRequested);
+            _state.StateChangeEvent += new StateChangeEventHandler (StateChangeRequested);
 
             base.Initialize();
         }
@@ -51,8 +49,7 @@ namespace KungfuCombat
         /// LoadContent will be called once per game and is the place to load
         /// all of your content.
         /// </summary>
-        protected override void LoadContent()
-        {
+        protected override void LoadContent() {
             //TODO: use this.Content to load your game content here 
         }
 
@@ -61,8 +58,7 @@ namespace KungfuCombat
         /// checking for collisions, gathering input, and playing audio.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Update(GameTime gameTime)
-        {
+        protected override void Update(GameTime gameTime) {
             _state.Update (gameTime);
             base.Update(gameTime);
         }
@@ -71,17 +67,15 @@ namespace KungfuCombat
         /// This is called when the game should draw itself.
         /// </summary>
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Draw(GameTime gameTime)
-        {
+        protected override void Draw(GameTime gameTime) {
             _state.Draw (gameTime);
             base.Draw(gameTime);
         }
 
-        protected void StateChangeRequested(object sender, EventArgs e) {
+        protected void StateChangeRequested(object sender, StateChangeEventArgs e) {
             _state.StateChangeEvent -= StateChangeRequested;
-            //TODO: implement
-            _state = _stateCache.GetState (typeof (IntroScreen));
-            _state.StateChangeEvent += new EventHandler (StateChangeRequested);
+            _state = _stateCache.GetState (e.State);
+            _state.StateChangeEvent += new StateChangeEventHandler (StateChangeRequested);
         }
     }
 }

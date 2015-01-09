@@ -6,8 +6,8 @@ using Microsoft.Xna.Framework.Input;
 
 using Octo;
 
-namespace KungfuCombat
-{
+namespace KungfuCombat {
+
     public class IntroScreen : IGameState {
 
         public IntroScreen(GraphicsDeviceManager graphics,
@@ -21,18 +21,18 @@ namespace KungfuCombat
 
         object objectLock = new object();
 
-        event EventHandler StateChangeEventHandler;
+        private event StateChangeEventHandler OnStateChange;
 
-        public event EventHandler StateChangeEvent
-        {
+        public event StateChangeEventHandler StateChangeEvent {
             add {
-                lock (objectLock)
-                {
-                    StateChangeEventHandler += value;
+                lock (objectLock) {
+                    OnStateChange += value;
                 }
             }
             remove {
-                StateChangeEventHandler -= value;
+                lock (objectLock) {
+                    OnStateChange -= value;
+                }
             }
         }
 
@@ -42,10 +42,9 @@ namespace KungfuCombat
         /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime) {
             //TODO: implement
-            EventHandler handler = StateChangeEventHandler;
 
-            if (handler != null) {
-                handler (this, new EventArgs ());
+            if (OnStateChange != null) {
+                OnStateChange (this, new StateChangeEventArgs (typeof (IntroScreen)));
             }
         }
 

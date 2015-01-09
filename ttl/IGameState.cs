@@ -2,15 +2,14 @@ using System;
 
 using Microsoft.Xna.Framework;
 
-namespace Octo
-{
+namespace Octo {
+
     /// <summary>
     /// Represents state of the game
     /// 
     /// Handles controls, runs game logic, draws screen
     /// </summary>
-    public interface IGameState
-    {
+    public interface IGameState {
         /// <summary>
         /// run game logic for this state
         /// </summary>
@@ -34,6 +33,21 @@ namespace Octo
         /// <value><c>true</c> if content loaded; otherwise, <c>false</c>.</value>
         bool ContentLoaded { get; }
 
-        event EventHandler StateChangeEvent;
+        event StateChangeEventHandler StateChangeEvent;
     }
+
+    public class StateChangeEventArgs : EventArgs {
+
+        public StateChangeEventArgs(Type state) {
+            _state = state;
+        }
+
+        protected readonly Type _state;
+
+        public Type State {
+            get { return _state; }
+        }
+    }
+
+    public delegate void StateChangeEventHandler(object sender, StateChangeEventArgs e);
 }
