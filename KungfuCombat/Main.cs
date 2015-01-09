@@ -42,6 +42,8 @@ namespace KungfuCombat
             _stateCache = new StateCache (new StateFactory (_graphics, 
                                                             _spriteBatch));
             _state = _stateCache.GetState (typeof (IntroScreen));
+            _state.StateChangeEvent += new EventHandler (StateChangeRequested);
+
             base.Initialize();
         }
 
@@ -73,6 +75,13 @@ namespace KungfuCombat
         {
             _state.Draw (gameTime);
             base.Draw(gameTime);
+        }
+
+        protected void StateChangeRequested(object sender, EventArgs e) {
+            _state.StateChangeEvent -= StateChangeRequested;
+            //TODO: implement
+            _state = _stateCache.GetState (typeof (IntroScreen));
+            _state.StateChangeEvent += new EventHandler (StateChangeRequested);
         }
     }
 }

@@ -8,8 +8,8 @@ using Octo;
 
 namespace KungfuCombat
 {
-    public class IntroScreen : IGameState
-    {
+    public class IntroScreen : IGameState {
+
         public IntroScreen(GraphicsDeviceManager graphics,
                            SpriteBatch spriteBatch) {
             _graphics = graphics;
@@ -19,12 +19,34 @@ namespace KungfuCombat
         private readonly GraphicsDeviceManager _graphics;
         private readonly SpriteBatch _spriteBatch;
 
+        object objectLock = new object();
+
+        event EventHandler StateChangeEventHandler;
+
+        public event EventHandler StateChangeEvent
+        {
+            add {
+                lock (objectLock)
+                {
+                    StateChangeEventHandler += value;
+                }
+            }
+            remove {
+                StateChangeEventHandler -= value;
+            }
+        }
+
         /// <summary>
         /// run game logic for this state
         /// </summary>
         /// <param name="gameTime">Game time.</param>
         public void Update(GameTime gameTime) {
             //TODO: implement
+            EventHandler handler = StateChangeEventHandler;
+
+            if (handler != null) {
+                handler (this, new EventArgs ());
+            }
         }
 
         /// <summary>

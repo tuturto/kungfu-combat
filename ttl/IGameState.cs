@@ -33,5 +33,7 @@ namespace Octo
         /// </summary>
         /// <value><c>true</c> if content loaded; otherwise, <c>false</c>.</value>
         bool ContentLoaded { get; }
+
+        event EventHandler StateChangeEvent;
     }
 }
