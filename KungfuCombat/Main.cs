@@ -4,7 +4,6 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Storage;
-using Microsoft.Xna.Framework.Input;
 
 using Octo;
 
@@ -17,15 +16,19 @@ namespace KungfuCombat
     /// </summary>
     public class Main : Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;        
-
         public Main()
         {
-            graphics = new GraphicsDeviceManager(this);
+            _graphics = new GraphicsDeviceManager(this);
+            _spriteBatch = new SpriteBatch(GraphicsDevice);
+
             Content.RootDirectory = "Content";                
-            graphics.IsFullScreen = true;        
+            _graphics.IsFullScreen = false;
         }
+
+        private GraphicsDeviceManager _graphics;
+        private SpriteBatch _spriteBatch;
+        private IStateCache _stateCache;
+        private IGameState _state;
 
         /// <summary>
         /// Allows the game to perform any initialization it needs to before starting to run.
@@ -36,8 +39,10 @@ namespace KungfuCombat
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            _stateCache = new StateCache (new StateFactory (_graphics, 
+                                                            _spriteBatch));
+            _state = _stateCache.GetState (typeof (IntroScreen));
             base.Initialize();
-                
         }
 
         /// <summary>
@@ -46,9 +51,6 @@ namespace KungfuCombat
         /// </summary>
         protected override void LoadContent()
         {
-            // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
-
             //TODO: use this.Content to load your game content here 
         }
 
@@ -59,12 +61,7 @@ namespace KungfuCombat
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // For Mobile devices, this logic will close the Game when the Back button is pressed
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-            {
-                Exit();
-            }
-            // TODO: Add your update logic here            
+            _state.Update (gameTime);
             base.Update(gameTime);
         }
 
@@ -74,10 +71,7 @@ namespace KungfuCombat
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
-        
-            //TODO: Add your drawing code here
-
+            _state.Draw (gameTime);
             base.Draw(gameTime);
         }
     }

@@ -22,5 +22,16 @@ namespace Octo
         /// </summary>
         /// <param name="gameTime">Game time.</param>
         void Draw(GameTime gameTime);
+
+        /// <summary>
+        /// Load content relevant to this state
+        /// </summary>
+        void LoadContent();
+
+        /// <summary>
+        /// Gets a value indicating whether content for this state has been loaded
+        /// </summary>
+        /// <value><c>true</c> if content loaded; otherwise, <c>false</c>.</value>
+        bool ContentLoaded { get; }
     }
 }
