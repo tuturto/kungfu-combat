@@ -54,6 +54,7 @@
     <Compile Include="Main.cs" />
     <Compile Include="IntroScreen.cs" />
     <Compile Include="StateFactory.cs" />
+    <Compile Include="MainMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Icon.png" />

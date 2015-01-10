@@ -7,14 +7,14 @@ using Microsoft.Xna.Framework.Content;
 
 using Octo;
 
-namespace KungfuCombat {
+namespace KungfuCombat
+{
+    public class MainMenu : GameState {
 
-    public class IntroScreen : GameState {
-
-        public IntroScreen(GraphicsDeviceManager graphics,
-                           SpriteBatch spriteBatch,
-                           ContentManager content) 
-                : base(graphics, spriteBatch, content) {
+        public MainMenu(GraphicsDeviceManager graphics,
+                        SpriteBatch spriteBatch,
+                        ContentManager content) 
+            : base(graphics, spriteBatch, content) {
         }
 
         private Texture2D _titleTexture;
@@ -24,7 +24,7 @@ namespace KungfuCombat {
         /// Perform initialization for this state
         /// </summary>
         public override void Initialize() {
-            _titleLocation = new Vector2(1024 / 2, 0);
+            _titleLocation = new Vector2(1024 / 2, 768 / 2);
         }
 
         /// <summary>
@@ -33,11 +33,6 @@ namespace KungfuCombat {
         /// <param name="gameTime">Game time.</param>
         public override void Update(GameTime gameTime) {
 
-            if (_titleLocation.Y < 768 / 2) {
-                _titleLocation.Y = _titleLocation.Y + 7.5f;
-            } else {
-                OnStateChange (this, new StateChangeEventArgs (typeof (MainMenu)));
-            }
         }
 
         /// <summary>
@@ -50,11 +45,11 @@ namespace KungfuCombat {
             Sprites.Begin ();
 
             var loc = new Vector2 (_titleLocation.X - _titleTexture.Width / 2,
-                                  _titleLocation.Y - _titleTexture.Height / 2);
+                                   _titleLocation.Y - _titleTexture.Height / 2);
 
             Sprites.Draw (_titleTexture,
-                               loc,
-                               Color.White);
+                          loc,
+                          Color.White);
 
             Sprites.End ();
         }

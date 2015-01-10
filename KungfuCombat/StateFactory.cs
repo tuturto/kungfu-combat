@@ -26,6 +26,8 @@ namespace KungfuCombat {
             switch (type.Name) {
             case "IntroScreen":
                 return new IntroScreen (_graphics, _spriteBatch, _content);
+            case "MainMenu":
+                return new MainMenu (_graphics, _spriteBatch, _content);
             default:
                 throw new Exception (string.Format ("State {0} not found",
                                                   type));
