@@ -43,6 +43,7 @@
     <Compile Include="IStateFactory.cs" />
     <Compile Include="StateCache.cs" />
     <Compile Include="OctoGame.cs" />
+    <Compile Include="GameState.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

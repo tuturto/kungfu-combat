@@ -13,13 +13,20 @@ namespace KungfuCombat
     public class Main : OctoGame {
 
         public Main() : base () {
-            _graphics.IsFullScreen = false;
+
         }
 
         protected override void Initialize() {
             _stateCache = new StateCache (new StateFactory (_graphics, 
-                                                            _spriteBatch));
+                                                            _spriteBatch,
+                                                            Content));
             _state = _stateCache.GetState (typeof (IntroScreen));
+
+            Window.Title = "Kungfu Combat";
+            _graphics.IsFullScreen = false;
+            _graphics.PreferredBackBufferWidth = 1024;
+            _graphics.PreferredBackBufferHeight = 768;
+            _graphics.ApplyChanges ();
 
             base.Initialize ();
         }

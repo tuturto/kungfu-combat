@@ -25,6 +25,8 @@ namespace Octo {
                 newState.LoadContent ();
             }
 
+            newState.Initialize ();
+
             return newState;
         }
     }

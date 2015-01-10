@@ -3,47 +3,39 @@ using System;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Content;
 
 using Octo;
 
 namespace KungfuCombat {
 
-    public class IntroScreen : IGameState {
+    public class IntroScreen : GameState {
 
         public IntroScreen(GraphicsDeviceManager graphics,
-                           SpriteBatch spriteBatch) {
-            _graphics = graphics;
-            _spriteBatch = spriteBatch;
+                           SpriteBatch spriteBatch,
+                           ContentManager content) 
+                : base(graphics, spriteBatch, content) {
         }
 
-        private readonly GraphicsDeviceManager _graphics;
-        private readonly SpriteBatch _spriteBatch;
+        private Texture2D _titleTexture;
+        private Vector2 _titleLocation;
 
-        object objectLock = new object();
-
-        private event StateChangeEventHandler OnStateChange;
-
-        public event StateChangeEventHandler StateChangeEvent {
-            add {
-                lock (objectLock) {
-                    OnStateChange += value;
-                }
-            }
-            remove {
-                lock (objectLock) {
-                    OnStateChange -= value;
-                }
-            }
+        /// <summary>
+        /// Perform initialization for this state
+        /// </summary>
+        public override void Initialize() {
+            _titleLocation = new Vector2(1024 / 2, 0);
         }
 
         /// <summary>
         /// run game logic for this state
         /// </summary>
         /// <param name="gameTime">Game time.</param>
-        public void Update(GameTime gameTime) {
-            //TODO: implement
+        public override void Update(GameTime gameTime) {
 
-            if (OnStateChange != null) {
+            if (_titleLocation.Y < 768 / 2) {
+                _titleLocation.Y = _titleLocation.Y + 5f;
+            } else {
                 OnStateChange (this, new StateChangeEventArgs (typeof (IntroScreen)));
             }
         }
@@ -52,32 +44,29 @@ namespace KungfuCombat {
         /// Draw the state on screen
         /// </summary>
         /// <param name="gameTime">Game time.</param>
-        public void Draw(GameTime gameTime) {
-            _graphics.GraphicsDevice.Clear(Color.CornflowerBlue);
+        public override void Draw(GameTime gameTime) {
+            Graphics.GraphicsDevice.Clear(Color.Black);
 
-            //TODO: implement
+            Sprites.Begin ();
+
+            var loc = new Vector2 (_titleLocation.X - _titleTexture.Width / 2,
+                                  _titleLocation.Y - _titleTexture.Height / 2);
+
+            Sprites.Draw (_titleTexture,
+                               loc,
+                               Color.White);
+
+            Sprites.End ();
         }
 
         /// <summary>
         /// Load content relevant to this state
         /// </summary>
-        public void LoadContent() {
-            //TODO: implement
-            ContentLoaded = true;
-        }
+        public override void LoadContent() {
 
-        private bool _contentLoaded = false;
-        /// <summary>
-        /// Gets a value indicating whether content for this state has been loaded
-        /// </summary>
-        /// <value><c>true</c> if content loaded; otherwise, <c>false</c>.</value>
-        public bool ContentLoaded { 
-            get {
-                return _contentLoaded;
-            }
-            private set {
-                _contentLoaded = value;
-            }
+            _titleTexture = Content.Load<Texture2D> ("title.png");
+
+            base.LoadContent ();
         }
     }
 }
