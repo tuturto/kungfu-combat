@@ -44,6 +44,10 @@
     <Compile Include="StateCache.cs" />
     <Compile Include="OctoGame.cs" />
     <Compile Include="GameState.cs" />
+    <Compile Include="Collisions\Circle.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Collisions\" />
+  </ItemGroup>
 </Project>
